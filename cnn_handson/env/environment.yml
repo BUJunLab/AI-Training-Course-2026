@@ -1,0 +1,42 @@
+# Conda environment for the Brain MRI CNN hands-on.
+#
+# One-shot setup + launch (from the cnn_handson/ project root):
+#   bash env/setup.sh
+#
+# Or manually:
+#   conda env create -f env/environment.yml
+#   conda activate cnn-handson
+#   jupyter notebook notebooks/01_classification.ipynb
+#
+# CUDA users (Linux + NVIDIA GPU): add `pytorch-cuda=12.1` under dependencies
+#   and add `nvidia` to channels, *before* creating the env.
+# macOS users (Apple Silicon): MPS is enabled automatically by recent PyTorch;
+#   no extra packages are needed -- get_device() will pick `mps`.
+
+name: cnn-handson
+
+channels:
+  - pytorch
+  - conda-forge
+
+dependencies:
+  - python=3.11
+
+  # Deep learning
+  - pytorch>=2.1
+  - torchvision>=0.16
+
+  # Scientific stack
+  - numpy>=1.24
+  - matplotlib>=3.7
+  - pillow>=10.0
+
+  # Jupyter
+  - jupyter
+  - notebook
+  - ipykernel
+
+  # pip-only packages
+  - pip
+  - pip:
+      - kagglehub>=0.2
